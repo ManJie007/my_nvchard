@@ -1,0 +1,112 @@
+diff --git a/init.lua b/init.lua
+index 0fda20c..897ddae 100644
+--- a/init.lua
++++ b/init.lua
+@@ -1,5 +1,5 @@
+ vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
+-vim.g.mapleader = " "
++vim.g.mapleader = ","
+ 
+ -- bootstrap lazy and all plugins
+ local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+diff --git a/lua/chadrc.lua b/lua/chadrc.lua
+index c82dca1..edabe2a 100644
+--- a/lua/chadrc.lua
++++ b/lua/chadrc.lua
+@@ -6,7 +6,7 @@
+ local M = {}
+ 
+ M.base46 = {
+-	theme = "onedark",
++	theme = "everblush",
+ 
+ 	-- hl_override = {
+ 	-- 	Comment = { italic = true },
+@@ -14,4 +14,12 @@ M.base46 = {
+ 	-- },
+ }
+ 
++M.term = {
++   float = {
++     row = 0, col = 0,
++     width = 1, height = 0.9,
++     border = "single",
++   },
++}
++
+ return M
+diff --git a/lua/configs/lspconfig.lua b/lua/configs/lspconfig.lua
+index 478df01..019b01f 100644
+--- a/lua/configs/lspconfig.lua
++++ b/lua/configs/lspconfig.lua
+@@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
+ local lspconfig = require "lspconfig"
+ 
+ -- EXAMPLE
+-local servers = { "html", "cssls" }
++local servers = { "html", "cssls", "clangd", "pyright","vimls" }
+ local nvlsp = require "nvchad.configs.lspconfig"
+ 
+ -- lsps with default config
+diff --git a/lua/mappings.lua b/lua/mappings.lua
+index 783b78f..46a092e 100644
+--- a/lua/mappings.lua
++++ b/lua/mappings.lua
+@@ -7,4 +7,10 @@ local map = vim.keymap.set
+ map("n", ";", ":", { desc = "CMD enter command mode" })
+ map("i", "jk", "<ESC>")
+ 
++map("n", "<leader>n", "<cmd> NvimTreeToggle <cr>")
++
+ -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
++-- Disable mappings
++local nomap = vim.keymap.del
++
++nomap("n", "<C-n>")
+diff --git a/lua/plugins/init.lua b/lua/plugins/init.lua
+index 6474776..0d9ca48 100644
+--- a/lua/plugins/init.lua
++++ b/lua/plugins/init.lua
+@@ -13,13 +13,33 @@ return {
+     end,
+   },
+ 
+-  -- {
+-  -- 	"nvim-treesitter/nvim-treesitter",
+-  -- 	opts = {
+-  -- 		ensure_installed = {
+-  -- 			"vim", "lua", "vimdoc",
+-  --      "html", "css"
+-  -- 		},
+-  -- 	},
+-  -- },
++  {
++    "nvim-treesitter/nvim-treesitter",
++    opts = {
++      ensure_installed = {
++        "vim", "lua", "vimdoc",
++        "html", "css", "c", "cpp",
++        "python"
++      },
++    },
++  },
++
++  {
++    "easymotion/vim-easymotion",
++    config = function()
++      vim.g.EasyMotion_do_mapping = 0
++    end,
++    lazy = false,
++    keys = {
++      { "s",         "<Plug>(easymotion-overwin-f2)", mode = "n" },
++      { "<leader>j", "<Plug>(easymotion-j)",          mode = "n" },
++      { "<leader>k", "<Plug>(easymotion-k)",          mode = "n" },
++    },
++  },
++
++  {
++    "mg979/vim-visual-multi",
++    lazy = false,
++  },
++
+ }
