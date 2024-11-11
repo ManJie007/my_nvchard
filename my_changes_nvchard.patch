@@ -36,7 +36,7 @@ index c82dca1..edabe2a 100644
 +
  return M
 diff --git a/lua/configs/lspconfig.lua b/lua/configs/lspconfig.lua
-index 478df01..019b01f 100644
+index 478df01..f87021e 100644
 --- a/lua/configs/lspconfig.lua
 +++ b/lua/configs/lspconfig.lua
 @@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
@@ -44,30 +44,55 @@ index 478df01..019b01f 100644
  
  -- EXAMPLE
 -local servers = { "html", "cssls" }
-+local servers = { "html", "cssls", "clangd", "pyright","vimls" }
++local servers = { "html", "cssls", "clangd", "pyright", "vimls", "marksman", "bashls" }
  local nvlsp = require "nvchad.configs.lspconfig"
  
  -- lsps with default config
 diff --git a/lua/mappings.lua b/lua/mappings.lua
-index 783b78f..46a092e 100644
+index 783b78f..33e363d 100644
 --- a/lua/mappings.lua
 +++ b/lua/mappings.lua
-@@ -7,4 +7,10 @@ local map = vim.keymap.set
+@@ -7,4 +7,16 @@ local map = vim.keymap.set
  map("n", ";", ":", { desc = "CMD enter command mode" })
  map("i", "jk", "<ESC>")
  
++map("t", "<Esc>", "<C-\\><C-n>", {desc = "Exit terminal mode"})
++
++-- plugin keymap
 +map("n", "<leader>n", "<cmd> NvimTreeToggle <cr>")
++
++local builtin = require('telescope.builtin')
++map("n", "<leader>fc", builtin.command_history, { desc = 'Telescope commands history' })
 +
  -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 +-- Disable mappings
 +local nomap = vim.keymap.del
 +
 +nomap("n", "<C-n>")
+diff --git a/lua/options.lua b/lua/options.lua
+index 738f20b..38b74f2 100644
+--- a/lua/options.lua
++++ b/lua/options.lua
+@@ -2,5 +2,6 @@ require "nvchad.options"
+ 
+ -- add yours here!
+ 
+--- local o = vim.o
++local o = vim.o
++o.wrap = false
+ -- o.cursorlineopt ='both' -- to enable cursorline!
 diff --git a/lua/plugins/init.lua b/lua/plugins/init.lua
-index 6474776..0d9ca48 100644
+index 6474776..d13a644 100644
 --- a/lua/plugins/init.lua
 +++ b/lua/plugins/init.lua
-@@ -13,13 +13,33 @@ return {
+@@ -1,5 +1,4 @@
+-return {
+-  {
++return { {
+     "stevearc/conform.nvim",
+     -- event = 'BufWritePre', -- uncomment for format on save
+     opts = require "configs.conform",
+@@ -13,13 +12,33 @@ return {
      end,
    },
  
@@ -86,7 +111,7 @@ index 6474776..0d9ca48 100644
 +      ensure_installed = {
 +        "vim", "lua", "vimdoc",
 +        "html", "css", "c", "cpp",
-+        "python"
++        "python", "markdown", "bash"
 +      },
 +    },
 +  },
