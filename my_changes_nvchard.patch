@@ -49,10 +49,10 @@ index 478df01..f87021e 100644
  
  -- lsps with default config
 diff --git a/lua/mappings.lua b/lua/mappings.lua
-index 783b78f..33e363d 100644
+index 783b78f..5fff131 100644
 --- a/lua/mappings.lua
 +++ b/lua/mappings.lua
-@@ -7,4 +7,16 @@ local map = vim.keymap.set
+@@ -7,4 +7,17 @@ local map = vim.keymap.set
  map("n", ";", ":", { desc = "CMD enter command mode" })
  map("i", "jk", "<ESC>")
  
@@ -63,6 +63,7 @@ index 783b78f..33e363d 100644
 +
 +local builtin = require('telescope.builtin')
 +map("n", "<leader>fc", builtin.command_history, { desc = 'Telescope commands history' })
++map("n", "<leader>fs", builtin.lsp_document_symbols, { desc = 'Lists LSP document symbols in the current buffer' })
 +
  -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 +-- Disable mappings
