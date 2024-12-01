@@ -36,7 +36,7 @@ index c82dca1..edabe2a 100644
 +
  return M
 diff --git a/lua/configs/lspconfig.lua b/lua/configs/lspconfig.lua
-index 478df01..a106ce4 100644
+index 478df01..e2d2bb1 100644
 --- a/lua/configs/lspconfig.lua
 +++ b/lua/configs/lspconfig.lua
 @@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
@@ -44,7 +44,7 @@ index 478df01..a106ce4 100644
  
  -- EXAMPLE
 -local servers = { "html", "cssls" }
-+local servers = { "html", "cssls", "vimls", "lua_ls", "marksman", "bashls", "clangd", "pyright", "gopls", "ts_ls" }
++local servers = { "html", "cssls", "vimls", "lua_ls", "marksman", "bashls", "clangd", "pyright", "gopls", "ts_ls", "rust_analyzer" }
  local nvlsp = require "nvchad.configs.lspconfig"
  
  -- lsps with default config
