@@ -10,18 +10,9 @@ index 0fda20c..897ddae 100644
  -- bootstrap lazy and all plugins
  local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 diff --git a/lua/chadrc.lua b/lua/chadrc.lua
-index c82dca1..edabe2a 100644
+index c82dca1..8609a5f 100644
 --- a/lua/chadrc.lua
 +++ b/lua/chadrc.lua
-@@ -6,7 +6,7 @@
- local M = {}
- 
- M.base46 = {
--	theme = "onedark",
-+	theme = "everblush",
- 
- 	-- hl_override = {
- 	-- 	Comment = { italic = true },
 @@ -14,4 +14,12 @@ M.base46 = {
  	-- },
  }
@@ -75,10 +66,10 @@ index 783b78f..8b86adb 100644
 +
 +nomap("n", "<C-n>")
 diff --git a/lua/options.lua b/lua/options.lua
-index 738f20b..38b74f2 100644
+index 738f20b..97df940 100644
 --- a/lua/options.lua
 +++ b/lua/options.lua
-@@ -2,5 +2,6 @@ require "nvchad.options"
+@@ -2,5 +2,9 @@ require "nvchad.options"
  
  -- add yours here!
  
@@ -86,6 +77,9 @@ index 738f20b..38b74f2 100644
 +local o = vim.o
 +o.wrap = false
  -- o.cursorlineopt ='both' -- to enable cursorline!
++--
++local opt = vim.opt
++opt.backup = true
 diff --git a/lua/plugins/init.lua b/lua/plugins/init.lua
 index 6474776..7719445 100644
 --- a/lua/plugins/init.lua
