@@ -81,7 +81,7 @@ index 738f20b..97df940 100644
 +local opt = vim.opt
 +opt.backup = true
 diff --git a/lua/plugins/init.lua b/lua/plugins/init.lua
-index 6474776..7719445 100644
+index 6474776..7546fc1 100644
 --- a/lua/plugins/init.lua
 +++ b/lua/plugins/init.lua
 @@ -1,9 +1,8 @@
@@ -142,25 +142,25 @@ index 6474776..7719445 100644
 +  },
 +
 +  {
-+    "lervag/vimtex",
-+    lazy = false, -- we don't want to lazy load VimTeX
-+    -- tag = "v2.15", -- uncomment to pin to a specific release
-+    init = function()
-+      -- VimTeX configuration goes here, e.g.
-+      vim.g.vimtex_view_method = "skim"
-+      vim.g.vimtex_view_skim_sync = 1
-+      vim.g.vimtex_view_skim_activate = 1
-+      vim.g.vimtex_quickfix_mode = 0
-+    end
-+  },
-+
-+  {
 +    "liuchengxu/vista.vim",
 +    config = function ()
 +      vim.g.vista_default_executive = "nvim_lsp"
 +      vim.api.nvim_set_keymap("n", "<leader>o", ":Vista!!<CR>", { noremap = true, silent = true })
 +    end,
 +    lazy = false,
++  },
++
++  { 
++    'mrjones2014/smart-splits.nvim',
++    config = function()
++
++      require('legendary').setup({
++        extensions = {
++          -- to use default settings:
++          smart_splits = {},
++          },
++      })
++    end,
 +  }
 +
  }
